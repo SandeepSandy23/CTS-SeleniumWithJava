@@ -1,0 +1,29 @@
+package com.SeleniumPractice;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class App 
+{
+    public static void main( String[] args ) throws InterruptedException
+    {
+    	WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+       String baseURL = "https://www.echoecho.com/htmlforms09.htm";
+       driver.get(baseURL);
+        driver.manage().window().maximize();
+      Thread.sleep(4000);
+      if(!driver.findElement(By.name("option1")).isSelected())
+      {
+    	  driver.findElement(By.name("option1")).click();
+    	  System.out.println("Selected");
+      }
+      driver.findElement(By.name("option3")).click();
+      Thread.sleep(4000);
+      driver.close();
+    	  
+    }
+}
