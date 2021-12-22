@@ -1,0 +1,87 @@
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
+import org.testng.Assert;
+public class Image_upload{
+WebDriver driver=null;
+static String filename;
+static int select;
+static String projectDirpath=System.getProperty("user.dir");
+public static void main(String[] args) throws IOException
+{
+System.out.println("Select 1 for chrome and 2 for Mozilla");
+Scanner sc=new Scanner(System.in);
+select=sc.nextInt();
+if(select==1)
+{
+System.setProperty("webdriver.chrome.driver",projectDirpath+"\\drivers\\chromedriver.exe");
+WebDriver driver=new ChromeDriver();
+driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+driver.navigate().to("http://www.google.com");
+System.out.println("Opening webpage in Chrome.");
+System.out.println(driver.getTitle());
+driver.manage().window().maximize();
+Assert.assertEquals(driver.getTitle(),"Google");
+System.out.println("Title of the Page: "+driver.getTitle());
+driver.findElement(By.linkText("Images")).click();
+takesscreenshot((driver,"image");
+driver.findElement(By.className("LM8x9c")).click();
+takesscreenshot(driver,"image");
+driver.findElement(By.linkText("Upload an image")).click();
+takesscreenshot(driver,image");
+String imagePath=projectDirpath+"\\screenshots\\img1.jpg";
+driver.findElement(By.xpath("//input[@id='awyMjb']")).sendKeys(imagePath);
+WebElement verify=driver.findElement(By.xpath("//div[@id='result-stats']"));
+String val=verify.getText();
+System.out.println(val);
+takesscreenshot(driver,"image");
+List<WebElement>links=driver.findElements(By.tagName("a"));
+System.out.println("No of Links:"+links.size());
+driver.close();
+}
+else {
+System.setProperty("webdriver.gecko.driver",projectDirpath+"\\drivers\\geckodriver.exe");
+WebDriver drivers= new FirefoxDriver();
+drivers.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+drivers.navigate().to("http://www.google.com");
+System.out.println("Opening webpage in FireFox.");
+System.out.println(drivers.getTitle());
+drivers.manage().window().maximize();
+Assert.assertEquals(drivers.getTitle(),"Google");
+System.out.println("Title of the Page: "+drivers.getTitle());
+drivers.findElement(By.linkText("Images")).click();
+takesscreenshot(drivers,"image");
+drivers.findElement(By.className("LM8x9c")).click();
+takesscreenshot(drivers,"image");
+drivers.findElement(By.lintText("Upload an image")).click();
+takesscreenshot(drivers,"image");
+imagePath=projectDirpath+"\\screenshots\\img1.jpg";
+drivers.findElement(By.xpath("//input[@id='awyMjb']")).sendKeys(imagePath);
+WebElement verifys= drivers.findElement(By.xpath("/html/body/div[7]/div/div[7]/div/div/div/div"));
+verifys.getText();
+System.out.println(val1);
+takesscreenshot(drivers,"image");
+List<WebElement>link=drivers.findElements(By.tagName("a"));
+System.out.println("No of Links:"+link.size());
+drivers.close();
+}
+}
+public static void takesscreenshot(WebDriver driver,String name) throws IOException
+{
+Random randNumber=new Random();
+String filename= name+String.valueOf(randNumber.nextInt());
+File file=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+FileHandler.copy(file,new File(projectDirpath+"\\screenshots\\"+filename+".jpg"));
+}
+}
+s
