@@ -84,4 +84,3 @@ File file=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 FileHandler.copy(file,new File(projectDirpath+"\\screenshots\\"+filename+".jpg"));
 }
 }
-s
